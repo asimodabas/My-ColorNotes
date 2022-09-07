@@ -7,7 +7,7 @@ import com.asimodabas.my_colornotes.feature_note.domain.util.OrderType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetNote (
+class GetNoteUseCase (
     private val repository: NotesRepository
 ) {
 
