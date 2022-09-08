@@ -1,6 +1,6 @@
 package com.asimodabas.my_colornotes.feature_note.data.repository
 
-import NotesDao
+import com.asimodabas.my_colornotes.feature_note.data.data_source.NotesDao
 import com.asimodabas.my_colornotes.feature_note.domain.model.Notes
 import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesRepository
 import kotlinx.coroutines.flow.Flow

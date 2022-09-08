@@ -7,7 +7,7 @@ import com.asimodabas.my_colornotes.feature_note.domain.util.OrderType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class GetNoteUseCase (
+class GetNotesUseCase(
     private val repository: NotesRepository
 ) {
 
@@ -15,16 +15,16 @@ class GetNoteUseCase (
         noteOrder: NotesOrder = NotesOrder.Date(OrderType.Descending)
     ): Flow<List<Notes>> {
         return repository.getNote().map { notes ->
-            when(noteOrder.orderType) {
+            when (noteOrder.orderType) {
                 is OrderType.Ascending -> {
-                    when(noteOrder) {
+                    when (noteOrder) {
                         is NotesOrder.Title -> notes.sortedBy { it.title.lowercase() }
                         is NotesOrder.Date -> notes.sortedBy { it.timestamp }
                         is NotesOrder.Color -> notes.sortedBy { it.color }
                     }
                 }
                 is OrderType.Descending -> {
-                    when(noteOrder) {
+                    when (noteOrder) {
                         is NotesOrder.Title -> notes.sortedByDescending { it.title.lowercase() }
                         is NotesOrder.Date -> notes.sortedByDescending { it.timestamp }
                         is NotesOrder.Color -> notes.sortedByDescending { it.color }
