@@ -3,7 +3,7 @@ package com.asimodabas.my_colornotes.feature_note.domain.use_case
 import com.asimodabas.my_colornotes.feature_note.domain.model.Notes
 import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesRepository
 
-class GetNotes (
+class GetNotes(
     private val repository: NotesRepository
 ) {
 
