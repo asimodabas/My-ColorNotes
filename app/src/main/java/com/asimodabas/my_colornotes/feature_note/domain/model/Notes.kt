@@ -27,3 +27,5 @@ data class Notes(
             )
     }
 }
+
+class NoteException(message: String) : Exception(message)
