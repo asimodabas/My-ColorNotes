@@ -14,18 +14,19 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun NoteRadioButton(
-    text:String,
-    checked:Boolean,
-    onCheck:() ->Unit,
+    text: String,
+    checked: Boolean,
+    onCheck: () -> Unit,
     modifier: Modifier = Modifier
-){
+) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
-    ){
-        RadioButton(selected = checked, onClick = onCheck, colors = RadioButtonDefaults.colors(
-            selectedColor = MaterialTheme.colors.background,
-            unselectedColor = MaterialTheme.colors.onBackground
+    ) {
+        RadioButton(
+            selected = checked, onClick = onCheck, colors = RadioButtonDefaults.colors(
+                selectedColor = MaterialTheme.colors.background,
+                unselectedColor = MaterialTheme.colors.onBackground
             )
         )
         Spacer(modifier = Modifier.width(5.dp))
