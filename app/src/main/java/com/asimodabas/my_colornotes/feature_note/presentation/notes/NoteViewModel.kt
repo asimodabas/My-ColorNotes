@@ -18,12 +18,12 @@ import javax.inject.Inject
 @HiltViewModel
 class NoteViewModel
 @Inject constructor(
-    private val noteUseCase:NoteUseCase
-):ViewModel(){
+    private val noteUseCase: NoteUseCase
+) : ViewModel() {
 
     private val myState = mutableStateOf(NoteState())
-    private var recentlDeleteNote:  Notes? = null
-    val state : State<NoteState> = myState
+    private var recentlDeleteNote: Notes? = null
+    val state: State<NoteState> = myState
     private var getNotJob: Job? = null
 
     private fun getNotes(noteOrder: NotesOrder) {
@@ -42,9 +42,9 @@ class NoteViewModel
         getNotes(NotesOrder.Date(OrderType.Descending))
     }
 
-    fun onEvent(event:NoteEvent){
-        when(event){
-            is NoteEvent.Order ->{
+    fun onEvent(event: NoteEvent) {
+        when (event) {
+            is NoteEvent.Order -> {
                 if (state.value.notesOrder::class == event.noteOrder::class &&
                     state.value.notesOrder.orderType == event.noteOrder.orderType
                 ) {
@@ -52,13 +52,13 @@ class NoteViewModel
                 }
                 getNotes(event.noteOrder)
             }
-            is NoteEvent.deleteNotes ->{
+            is NoteEvent.deleteNotes -> {
                 viewModelScope.launch {
                     noteUseCase.deleteNotes(event.note)
                     recentlDeleteNote = event.note
                 }
             }
-            is NoteEvent.ToggleOrderSection->{
+            is NoteEvent.ToggleOrderSection -> {
                 myState.value = state.value.copy(
                     isOrderSectionVisible = !state.value.isOrderSectionVisible
                 )

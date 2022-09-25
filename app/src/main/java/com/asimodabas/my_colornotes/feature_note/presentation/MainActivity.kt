@@ -11,7 +11,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             MyColorNotesTheme {
 
-
             }
         }
     }

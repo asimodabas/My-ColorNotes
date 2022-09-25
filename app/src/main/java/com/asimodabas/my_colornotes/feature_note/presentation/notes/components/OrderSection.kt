@@ -16,8 +16,8 @@ import com.asimodabas.my_colornotes.feature_note.domain.util.OrderType
 fun OrderSection(
     modifier: Modifier,
     notesOrder: NotesOrder = NotesOrder.Date(OrderType.Descending),
-    onOrderChange:(NotesOrder) -> Unit
-){
+    onOrderChange: (NotesOrder) -> Unit
+) {
     Column(modifier = modifier) {
         Row(modifier = Modifier.fillMaxWidth()) {
             NoteRadioButton(
@@ -25,21 +25,27 @@ fun OrderSection(
                 checked = notesOrder is NotesOrder.Title,
                 onCheck = {
                     onOrderChange(
-                        NotesOrder.Title(notesOrder.orderType))})
+                        NotesOrder.Title(notesOrder.orderType)
+                    )
+                })
             Spacer(modifier = Modifier.width(5.dp))
             NoteRadioButton(
                 text = "Date",
                 checked = notesOrder is NotesOrder.Date,
                 onCheck = {
                     onOrderChange(
-                        NotesOrder.Date(notesOrder.orderType))})
+                        NotesOrder.Date(notesOrder.orderType)
+                    )
+                })
             Spacer(modifier = Modifier.width(5.dp))
             NoteRadioButton(
                 text = "Color",
                 checked = notesOrder is NotesOrder.Color,
                 onCheck = {
                     onOrderChange(
-                        NotesOrder.Color(notesOrder.orderType))})
+                        NotesOrder.Color(notesOrder.orderType)
+                    )
+                })
         }
         Spacer(modifier = Modifier.height(15.dp))
         Row(modifier = Modifier.fillMaxWidth()) {
@@ -48,14 +54,18 @@ fun OrderSection(
                 checked = notesOrder.orderType is OrderType.Ascending,
                 onCheck = {
                     onOrderChange(
-                        notesOrder.copy(OrderType.Ascending))})
+                        notesOrder.copy(OrderType.Ascending)
+                    )
+                })
             Spacer(modifier = Modifier.width(5.dp))
             NoteRadioButton(
                 text = "Descending",
                 checked = notesOrder.orderType is OrderType.Descending,
                 onCheck = {
                     onOrderChange(
-                        notesOrder.copy(OrderType.Descending))})
+                        notesOrder.copy(OrderType.Descending)
+                    )
+                })
         }
     }
 }
