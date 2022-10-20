@@ -29,9 +29,9 @@ class NoteViewModel
     private fun getNotes(noteOrder: NotesOrder) {
         getNotJob?.cancel()
         getNotJob = noteUseCase.getNotes(noteOrder)
-            .onEach { notes ->
+            .onEach { note ->
                 myState.value = state.value.copy(
-                    note = notes,
+                    notes = note,
                     notesOrder = noteOrder
                 )
             }
