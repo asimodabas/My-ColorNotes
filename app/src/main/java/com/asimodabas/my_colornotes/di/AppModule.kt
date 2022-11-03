@@ -7,7 +7,7 @@ import com.asimodabas.my_colornotes.feature_note.data.repository.NotesRepository
 import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesRepository
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.AddNotes
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.DeleteNotesUseCase
-import com.asimodabas.my_colornotes.feature_note.domain.use_case.GetNotes
+import com.asimodabas.my_colornotes.feature_note.domain.use_case.GetNoteUseCase
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.GetNotesUseCase
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.NoteUseCase
 import dagger.Module
@@ -41,7 +41,7 @@ object AppModule {
             getNotes = GetNotesUseCase(repository),
             deleteNotes = DeleteNotesUseCase(repository),
             addNote = AddNotes(repository),
-            getNote = GetNotes(repository)
+            getNote = GetNoteUseCase(repository)
         )
     }
 }
