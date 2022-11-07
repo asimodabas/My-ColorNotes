@@ -4,7 +4,7 @@ import com.asimodabas.my_colornotes.feature_note.domain.model.NoteException
 import com.asimodabas.my_colornotes.feature_note.domain.model.Notes
 import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesRepository
 
-class AddNotes(
+class AddNotesUseCase(
     private val repository: NotesRepository
 ) {
 

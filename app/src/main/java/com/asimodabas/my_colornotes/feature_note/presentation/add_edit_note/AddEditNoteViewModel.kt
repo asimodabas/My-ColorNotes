@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCase,
-    savedStateHandle : SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val myNoteTitle = mutableStateOf(NoteTextFieldState(nHint = "Enter title..."))
@@ -37,7 +37,7 @@ class AddEditNoteViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
-            if(noteId != -1) {
+            if (noteId != -1) {
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentMyNoteId = note.id
@@ -99,7 +99,7 @@ class AddEditNoteViewModel @Inject constructor(
                     } catch (e: NoteException) {
                         _eventFlow.emit(
                             UiEvent.ShowSnackbar(
-                                message = e.message ?: "Couldn't save note"
+                                message = e.message ?: "Failed to save note"
                             )
                         )
                     }
