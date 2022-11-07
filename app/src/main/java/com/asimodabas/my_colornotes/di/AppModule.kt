@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.asimodabas.my_colornotes.feature_note.data.data_source.NotesDatabase
 import com.asimodabas.my_colornotes.feature_note.data.repository.NotesRepositoryImp
 import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesRepository
-import com.asimodabas.my_colornotes.feature_note.domain.use_case.AddNotes
+import com.asimodabas.my_colornotes.feature_note.domain.use_case.AddNotesUseCase
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.DeleteNotesUseCase
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.GetNoteUseCase
 import com.asimodabas.my_colornotes.feature_note.domain.use_case.GetNotesUseCase
@@ -40,7 +40,7 @@ object AppModule {
         return NoteUseCase(
             getNotes = GetNotesUseCase(repository),
             deleteNotes = DeleteNotesUseCase(repository),
-            addNote = AddNotes(repository),
+            addNote = AddNotesUseCase(repository),
             getNote = GetNoteUseCase(repository)
         )
     }
