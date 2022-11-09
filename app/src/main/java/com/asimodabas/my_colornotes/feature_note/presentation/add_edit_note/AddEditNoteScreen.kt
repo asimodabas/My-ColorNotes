@@ -25,6 +25,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
@@ -37,6 +38,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.asimodabas.my_colornotes.feature_note.domain.model.Notes
 import com.asimodabas.my_colornotes.feature_note.presentation.add_edit_note.components.HintTextField
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @Composable
@@ -57,6 +59,21 @@ fun AddEditNoteScreen(
     }
 
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when(event) {
+                is AddEditNoteViewModel.UiEvent.ShowSnackbar -> {
+                    scaffoldState.snackbarHostState.showSnackbar(
+                        message = event.message
+                    )
+                }
+                is AddEditNoteViewModel.UiEvent.SaveNote -> {
+                    navController.navigateUp()
+                }
+            }
+        }
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -112,9 +129,7 @@ fun AddEditNoteScreen(
                     )
                 }
             }
-
             Spacer(modifier = Modifier.height(15.dp))
-
             HintTextField(
                 text = tittleState.nText,
                 hint = tittleState.nHint,
@@ -128,9 +143,7 @@ fun AddEditNoteScreen(
                 singleLine = true,
                 textStyle = MaterialTheme.typography.h5
             )
-
             Spacer(modifier = Modifier.height(15.dp))
-
             HintTextField(
                 text = contentState.nText,
                 hint = contentState.nHint,
