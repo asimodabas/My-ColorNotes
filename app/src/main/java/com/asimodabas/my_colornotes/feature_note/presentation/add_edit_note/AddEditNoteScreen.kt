@@ -113,6 +113,37 @@ fun AddEditNoteScreen(
                 }
             }
 
+            Spacer(modifier = Modifier.height(15.dp))
+
+            HintTextField(
+                text = tittleState.nText,
+                hint = tittleState.nHint,
+                onValueChange = {
+                    viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
+                },
+                onFocusChange = {
+                    viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
+                },
+                hintVisibility = tittleState.isHintVisible,
+                singleLine = true,
+                textStyle = MaterialTheme.typography.h5
+            )
+
+            Spacer(modifier = Modifier.height(15.dp))
+
+            HintTextField(
+                text = contentState.nText,
+                hint = contentState.nHint,
+                onValueChange = {
+                    viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
+                },
+                onFocusChange = {
+                    viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
+                },
+                hintVisibility = contentState.isHintVisible,
+                textStyle = MaterialTheme.typography.body1,
+                modifier = Modifier.fillMaxHeight()
+            )
         }
     }
 }
