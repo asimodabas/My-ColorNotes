@@ -6,7 +6,6 @@ import com.asimodabas.my_colornotes.feature_note.domain.repository.NotesReposito
 import kotlinx.coroutines.flow.Flow
 
 class NotesRepositoryImp(private val dao: NotesDao) : NotesRepository {
-
     override fun getNote(): Flow<List<Notes>> {
         return dao.getNote()
     }

@@ -62,7 +62,7 @@ fun AddEditNoteScreen(
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
-            when(event) {
+            when (event) {
                 is AddEditNoteViewModel.UiEvent.ShowSnackbar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message
@@ -87,7 +87,7 @@ fun AddEditNoteScreen(
             }
         },
         scaffoldState = scaffoldState
-    ){
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
