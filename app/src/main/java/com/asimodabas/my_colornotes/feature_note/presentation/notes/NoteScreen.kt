@@ -36,11 +36,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.asimodabas.my_colornotes.feature_note.presentation.notes.components.NotesItem
 import com.asimodabas.my_colornotes.feature_note.presentation.notes.components.OrderSection
+import com.asimodabas.my_colornotes.feature_note.presentation.util.Screens
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun NotesScreen(
+fun NoteScreen(
     navController: NavController,
     viewModel: NoteViewModel = hiltViewModel()
 ) {
@@ -52,7 +53,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    // Navigation
+                    navController.navigate(Screens.AddEditNoteScreen.route)
                 },
                 backgroundColor = MaterialTheme.colors.secondary
             ) {
@@ -103,16 +104,19 @@ fun NotesScreen(
             }
             Spacer(modifier = Modifier.height(16.dp))
             LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(state.notes) { note ->
+                items(state.notes) { mNote ->
                     NotesItem(
-                        note = note,
+                        note = mNote,
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable {
-
+                                navController.navigate(
+                                    Screens.AddEditNoteScreen.route +
+                                            "?noteId=${mNote.id}&noteColor=${mNote.color}"
+                                )
                             },
                         onDelete = {
-                            viewModel.onEvent(NoteEvent.deleteNotes(note))
+                            viewModel.onEvent(NoteEvent.deleteNotes(mNote))
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
                                     message = "Note Deleted",
