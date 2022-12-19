@@ -25,7 +25,7 @@ fun NoteRadioButton(
     ) {
         RadioButton(
             selected = checked, onClick = onCheck, colors = RadioButtonDefaults.colors(
-                selectedColor = MaterialTheme.colors.background,
+                selectedColor = MaterialTheme.colors.error,
                 unselectedColor = MaterialTheme.colors.onBackground
             )
         )
